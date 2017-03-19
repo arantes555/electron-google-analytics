@@ -9,6 +9,15 @@ chai.use(dirtyChai)
 
 const trackingID = process.env.TRACKING_ID || ''
 
+if (process.version.electron) {
+  const { app } = require('electron')
+  if (app.isReady()) console.log('App was already ready')
+  else {
+    console.log('App is not ready... Waiting for it.')
+    app.once('ready', () => console.log('App is now ready.'))
+  }
+}
+
 describe('Analytics', function () {
   this.timeout(10000)
 
