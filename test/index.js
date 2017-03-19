@@ -10,6 +10,8 @@ chai.use(dirtyChai)
 const trackingID = process.env.TRACKING_ID || ''
 
 describe('Analytics', function () {
+  this.timeout(10000)
+
   if (trackingID) {
     it('should send a pageview request', function () {
       const analytics = new Analytics(trackingID, { debug: true })
