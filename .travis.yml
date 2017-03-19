@@ -26,4 +26,4 @@ install:
 
 script:
   - npm run test:node
-  - npm run coverage
+  - npm run test:electron
