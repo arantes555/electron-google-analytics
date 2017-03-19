@@ -265,14 +265,17 @@ export default class Analytics {
       reqObj.headers = { 'User-Agent': this.userAgent }
     }
 
+    console.log('Sending request to', url)
     return fetch(url, reqObj)
       .then(res => {
+        console.log('Got response!')
         if (res.headers.get('content-type') !== 'image/gif') {
           return res.json()
             .catch(() => res.text()
               .then(text => { throw new AnalyticsError('Analytics server responded with an error: ' + text) })
             )
             .then(bodyJson => {
+              console.log('JSONified response', bodyJson)
               if (res.ok) {
                 if (this.debug) {
                   if (bodyJson.hitParsingResult[ 0 ].valid) {
