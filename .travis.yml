@@ -1,23 +1,23 @@
-sudo: false
-
 language: node_js
 
-node_js:
-  - 7
-  - 6
-
-env:
-  - CXX=g++-4.8
 addons:
   apt:
-    sources:
-      - ubuntu-toolchain-r-test
     packages:
-      - g++-4.8
+      - xvfb
+
 install:
-  - export CXX="g++-4.8"
-  - npm install -g npm@latest
+  - export DISPLAY=':99.0'
+  - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
   - npm install
 
-script:
-  - npm test
+node_js:
+  - 6
+  - 7
+
+before_install: npm install -g npm
+
+script: npm run coverage
+
+cache:
+  directories:
+    - node_modules

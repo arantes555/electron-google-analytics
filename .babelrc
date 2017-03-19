@@ -11,5 +11,20 @@
         ]
       }
     ]
-  ]
+  ],
+  "env": {
+    "coverage": {
+      "plugins": [
+        [
+          "istanbul",
+          {
+            "exclude": [
+              "lib",
+              "test"
+            ]
+          }
+        ]
+      ]
+    }
+  }
 }

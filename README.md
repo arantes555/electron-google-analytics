@@ -1,6 +1,8 @@
 ### Google Analytics - [Measurement Protocol API](https://developers.google.com/analytics/devguides/collection/protocol/v1/)
 
-[![travis-ci](https://travis-ci.org/vacu/electron-google-analytics.svg?branch=master)](https://travis-ci.org/vacu/electron-google-analytics)
+[![npm version][npm-image]][npm-url]
+[![build status][travis-image]][travis-url]
+[![coverage status][codecov-image]][codecov-url]
 
 
 The main purpose of this was to be used with [Electron](http://electron.atom.io/) built apps.
@@ -20,14 +22,14 @@ The main purpose of this was to be used with [Electron](http://electron.atom.io/
 #### Getting started
 Installation
 ```
-npm i electron-google-analytics
+npm i google-analytics-electron
 ```
 
 * Init
 
     `Analytics(trackingID, { userAgent, debug, version })`
     ```javascript
-    import Analytics from 'electron-google-analytics'
+    import Analytics from 'google-analytics-electron'
     const analytics = new Analytics('UA-XXXXXXXX-X')
     ```
 
@@ -174,4 +176,13 @@ npm i electron-google-analytics
 cross-env TRACKING_ID='UA-XXXXXXXX-X' npm test
 ```
 
-# MIT
+# License
+
+MIT
+
+[npm-image]: https://img.shields.io/npm/v/google-analytics-electron.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/google-analytics-electron
+[travis-image]: https://img.shields.io/travis/arantes555/electron-google-analytics.svg?style=flat-square
+[travis-url]: https://travis-ci.org/arantes555/electron-google-analytics
+[codecov-image]: https://img.shields.io/codecov/c/github/arantes555/electron-google-analytics.svg?style=flat-square
+[codecov-url]: https://codecov.io/gh/arantes555/electron-google-analytics
