@@ -9,7 +9,7 @@ chai.use(dirtyChai)
 
 const trackingID = process.env.TRACKING_ID || ''
 
-if (process.version.electron) {
+if (process.versions.electron) {
   const { app } = require('electron')
   if (app.isReady()) console.log('App was already ready')
   else {
