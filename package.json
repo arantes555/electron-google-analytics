@@ -10,7 +10,8 @@
     "test:node": "cross-env BABEL_ENV=test mocha --compilers js:babel-register",
     "test:electron": "xvfb-maybe cross-env BABEL_ENV=test electron-mocha --compilers js:babel-register",
     "lint": "standard test/* src/*",
-    "coverage": "xvfb-maybe cross-env BABEL_ENV=coverage electron-mocha --compilers js:babel-register -R test/coverage-reporter.js"
+    "coverage": "xvfb-maybe cross-env BABEL_ENV=coverage electron-mocha --compilers js:babel-register -R test/coverage-reporter.js",
+    "coverage:node": "cross-env BABEL_ENV=coverage mocha --compilers js:babel-register -R test/coverage-reporter.js"
   },
   "keywords": [
     "google",
