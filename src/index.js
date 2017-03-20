@@ -265,7 +265,7 @@ export default class Analytics {
       reqObj.headers = { 'User-Agent': this.userAgent }
     }
 
-    console.log('Sending request to', url)
+    console.log('Sending request to', url, 'with options', reqObj)
     return fetch(url, reqObj)
       .then(res => {
         console.log('Got response!')
