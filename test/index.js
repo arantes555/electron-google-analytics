@@ -19,7 +19,7 @@ if (process.versions.electron) {
 }
 
 describe('Analytics', function () {
-  this.timeout(10000)
+  this.timeout(65000)
 
   if (trackingID) {
     it('should send a pageview request', function () {
