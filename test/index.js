@@ -21,7 +21,7 @@ describe('Analytics', function () {
 
     it('should send a event request', function () {
       const analytics = new Analytics(trackingID, { debug: true })
-      return analytics.event('category', 'view')
+      return analytics.event('category', 'view', { evLabel: 'test', evValue: 5 })
         .then((response) => {
           return expect(response).to.have.property('clientID')
         })
@@ -37,7 +37,7 @@ describe('Analytics', function () {
 
     it('should send a transaction request', function () {
       const analytics = new Analytics(trackingID, { debug: true })
-      return analytics.transaction(123)
+      return analytics.transaction(123, { trnAffil: 'test', trnRev: '1', trnShip: 0.2, trnTax: 0.2, currCode: 'USD' })
         .then((response) => {
           return expect(response).to.have.property('clientID')
         })
@@ -61,7 +61,7 @@ describe('Analytics', function () {
 
     it('should send a refund request', function () {
       const analytics = new Analytics(trackingID, { debug: true })
-      return analytics.refund('T123')
+      return analytics.refund('T123', 'Ecommerce', 'Refund', 1)
         .then((response) => {
           return expect(response).to.have.property('clientID')
         })
@@ -69,7 +69,13 @@ describe('Analytics', function () {
 
     it('should send a item request', function () {
       const analytics = new Analytics(trackingID, { debug: true })
-      return analytics.item('123', 'Test item')
+      return analytics.item('123', 'Test item', {
+        itemPrice: 10,
+        itemQty: '2',
+        itemSku: 'sku',
+        itemVariation: 'var',
+        currCode: 'USD'
+      })
         .then((response) => {
           return expect(response).to.have.property('clientID')
         })
@@ -77,7 +83,14 @@ describe('Analytics', function () {
 
     it('should send a timing tracking request', function () {
       const analytics = new Analytics(trackingID, { debug: true })
-      return analytics.timingTrk('Category', 'jsonLoader', 123)
+      return analytics.timingTrk('Category', 'jsonLoader', 123, {
+        timingLbl: 'test',
+        dns: 10,
+        pageDownTime: 10,
+        redirTime: 10,
+        tcpConnTime: 10,
+        serverResTime: 10
+      })
         .then((response) => {
           return expect(response).to.have.property('clientID')
         })
@@ -97,6 +110,7 @@ describe('Analytics', function () {
         userAgent: 'test',
         appName: 'testApp',
         appID: 'com.example.test',
+        appInstallerID: 'com.example.testinstaller',
         appVersion: '1.0'
       })
       return analytics.send('social', { sa: 'social', sn: 'facebook', st: 'home' })

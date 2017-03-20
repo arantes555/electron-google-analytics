@@ -95,11 +95,11 @@ export default class Analytics {
    * Send a "transaction" request
    *
    * @param {string|number} trnID Transaction ID
-   * @param {string} trnAffil Transaction affiliation
-   * @param {string} trnRev Transaction Revenue
-   * @param {number} trnShip Transaction shipping
-   * @param {number} trnTax Transaction tax
-   * @param {string} currCode Currency code
+   * @param {string} [trnAffil] Transaction affiliation
+   * @param {string} [trnRev] Transaction Revenue
+   * @param {number} [trnShip] Transaction shipping
+   * @param {number} [trnTax] Transaction tax
+   * @param {string} [currCode] Currency code
    *
    * @return {Promise}
    */
@@ -152,13 +152,13 @@ export default class Analytics {
    * Send a "refund" request
    *
    * @param {string} transactionID Transaction ID
-   * @param {string} evCategory Event category
-   * @param {string} evAction Event action
-   * @param {number} nonInteraction Non-interaction parameter
+   * @param {string} [evCategory='Ecommerce'] Event category
+   * @param {string} [evAction='Refund'] Event action
+   * @param {number} [nonInteraction=1] Non-interaction parameter
    *
    * @returns {Promise}
    */
-  refund (transactionID, evCategory = 'Ecommerce', evAction = 'Refund', nonInteraction = 1) {
+  refund (transactionID, { evCategory = 'Ecommerce', evAction = 'Refund', nonInteraction = 1 } = {}) {
     const params = {
       ec: evCategory,
       ea: evAction,
@@ -174,11 +174,11 @@ export default class Analytics {
    * Send a "item" request
    * @param {string} transactionID Transaction ID
    * @param {string} itemName Item name
-   * @param {number} itemPrice Item price
-   * @param {string} itemQty Item quantity
-   * @param {string} itemSku Item SKU
-   * @param {string} itemVariation Item variation / category
-   * @param {string} currCode Currency code
+   * @param {number} [itemPrice] Item price
+   * @param {string} [itemQty] Item quantity
+   * @param {string} [itemSku] Item SKU
+   * @param {string} [itemVariation] Item variation / category
+   * @param {string} [currCode] Currency code
    * @return {Promise}
    */
   item (transactionID, itemName, { itemPrice, itemQty, itemSku, itemVariation, currCode } = {}) {
