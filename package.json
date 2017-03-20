@@ -8,7 +8,7 @@
     "prepublish": "npm run build",
     "test": "npm run lint && npm run test:electron && npm run test:node",
     "test:node": "cross-env BABEL_ENV=test DEBUG_FETCH=true mocha --compilers js:babel-register",
-    "test:electron": "xvfb-maybe cross-env BABEL_ENV=test DEBUG_FETCH=true electron-mocha --compilers js:babel-register",
+    "test:electron": "xvfb-maybe cross-env BABEL_ENV=test DEBUG_FETCH=true electron-mocha --compilers js:babel-register; cat net.log.json",
     "lint": "standard test/* src/*",
     "coverage": "xvfb-maybe cross-env BABEL_ENV=coverage DEBUG_FETCH=true electron-mocha --compilers js:babel-register -R test/coverage-reporter.js"
   },
@@ -36,7 +36,7 @@
     "cross-env": "^3.2.3",
     "dirty-chai": "^1.2.2",
     "electron": "^1.6.2",
-    "electron-mocha": "^3.3.0",
+    "electron-mocha": "arantes555/electron-mocha#master",
     "istanbul-api": "^1.1.1",
     "istanbul-lib-coverage": "^1.0.1",
     "mocha": "^3.2.0",
