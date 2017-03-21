@@ -267,26 +267,19 @@ export default class Analytics {
 
     return fetch(url, reqObj)
       .then(res => {
-        if (res.headers.get('content-type') !== 'image/gif') {
-          return res.json()
-            .catch(() => res.text()
-              .then(text => { throw new AnalyticsError('Analytics server responded with an error: ' + text) })
-            )
-            .then(bodyJson => {
-              if (res.ok) {
-                if (this.debug) {
-                  if (bodyJson.hitParsingResult[ 0 ].valid) {
-                    return { clientID: formObj.cid }
-                  }
-                  // Debug mode is true, so print out the error
-                  console.log(JSON.stringify(bodyJson, null, 2))
-                  throw new AnalyticsError('Analytics server responded with an error', bodyJson)
-                }
-                return { clientID: formObj.cid }
-              } else {
-                throw new AnalyticsError('Analytics server responded with an error', bodyJson)
-              }
-            })
+        if (res.ok) {
+          if (this.debug && res.headers.get('content-type') !== 'image/gif') {
+            return res.json()
+              .catch(() => res.text()
+                .then(text => { throw new AnalyticsError('Could not decode Analytics server response: ' + text) })
+              )
+              .then(bodyJson => {
+                if (bodyJson.hitParsingResult[ 0 ].valid) return { clientID: formObj.cid }
+                else throw new AnalyticsError('Analytics server responded with an error', bodyJson)
+              })
+          } else {
+            return { clientID: formObj.cid }
+          }
         } else {
           return res.text()
             .then(text => { throw new AnalyticsError('Analytics server responded with an error: ' + text) })
